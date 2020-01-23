@@ -2,11 +2,15 @@ import React, { useEffect, useState } from "react";
 import ImageCard from "./ImageCard"
 import axios from "axios";
 
-function ImageContainer() {
+function ImageContainer({date}) {
 const [picture, setPictures] = useState([]);
+var today = new Date();
+var todayString = today.getFullYear() + "-" + (today.getMonth()+1) + "-" + today.getDate();
+const [dateSelected, setDate] = useState(todayString);
+
   useEffect(() => {
     axios
-    .get('https://api.nasa.gov/planetary/apod?api_key=WiYGp5uin6CV4gjqQMNWA0rlKbcmhVIJkpaDgyBR')
+    .get(`https://api.nasa.gov/planetary/apod?api_key=WiYGp5uin6CV4gjqQMNWA0rlKbcmhVIJkpaDgyBR&date=${dateSelected}`)
     .then(response => {
       console.log(response.data);
       setPictures(response.data)
@@ -14,20 +18,22 @@ const [picture, setPictures] = useState([]);
     .catch(error => {
       console.log ("the data was not returned", error);
     });
-  }, []);
+  },  [dateSelected]);
 
+	const change = (e) => {
+		console.log(e.target.value);
+		setDate(e.target.value);
+  };
+  
   return (
-      <div>
-          <ImageCard
-            key={picture.url}
-            url={picture.url}
-            title={picture.title}
-            explanation={picture.explanation}
-            copyright={picture.copyright}
-            date={picture.date}
-          />
-    </div>
+          <div className="imagecontainer">
+			<ImageCard data={picture} />
+			<form>
+				<label for="date">Choose a Day</label>
+				<input id="date" type="date" onChange={change} value={date} />
+			</form>
+		</div>
   );
-    }
+}
 
 export default ImageContainer;

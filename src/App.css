@@ -31,3 +31,8 @@
     transform: rotate(360deg);
   }
 }
+
+.imageContainer {
+  padding: 20px;
+  background-color: gray;
+}

@@ -39,8 +39,10 @@ margin:5px 10px;
 }
 `
 
+
   return (
     <CardContainer>
+      <br></br>
       <h2>{props.data.title}</h2>
       
       <InfoButton color="primary" onClick={toggle} style={{ marginBottom: '1rem' }}>More Information</InfoButton>

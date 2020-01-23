@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import NavBar from './components/NavBar';
 import ImageContainer from './components/ImageContainer';
 
 function App() {
@@ -7,8 +8,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>NASA Photo of the Day</h1>
-      
+      <NavBar />
       <ImageContainer />
     </div>
   );

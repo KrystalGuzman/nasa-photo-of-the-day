@@ -27,11 +27,12 @@ const [dateSelected, setDate] = useState(todayString);
   
   return (
           <div className="imagecontainer">
-			<ImageCard data={picture} />
+			
 			<form>
 				<label for="date">Choose a Day</label>
 				<input id="date" type="date" onChange={change} value={date} />
 			</form>
+      <ImageCard data={picture} />
 		</div>
   );
 }
